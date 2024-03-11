@@ -1,0 +1,94 @@
+.v3dp__popout {
+    box-shadow: none!important;
+    border-radius: none!important;
+    /*margin-left: -20px!important;*/
+    /*margin-right: -20px!important;*/
+    /*width: calc(100% + 40px)!important;*/
+    width: 100%!important;
+    padding: 0px!important;
+}
+.v3dp__popout-day {
+    position: relative!important;
+    display: block!important;
+}
+.v3dp__input_wrapper {
+    display: none!important;
+}
+.v3dp__heading {
+    border-top: 1px solid var(--cozh-light-grey)!important;
+    border-bottom: 1px solid var(--cozh-light-grey)!important;
+}
+.v3dp__subheading {
+    margin-top: 0em!important;
+    font-size: var(--elem-subheading-font-size)!important;
+    padding: 10px 20px!important;
+    border-bottom: 1px solid var(--cozh-light-grey)!important;
+}
+.v3dp__elements button {
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    padding: 0px!important;
+}
+.v3dp__elements button span {
+    height: 36px!important;
+    width: 36px!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    line-height: 1!important;
+    font-weight: var(--elem-font-weight)!important;
+    font-size: 14px!important;
+    
+}
+.v3dp__elements {
+    padding: 10px 20px 0px 20px!important;
+}
+div.v3dp__datepicker {
+    --elem-hover-bg-color: var(--vdp-hover-bg-color, transparent)!important;
+    --elem-selected-bg-color: var(--vdp-selected-bg-color, var(--cozh-blue))!important;
+    --elem-current-font-weight: var(--vdp-current-date-font-weight, 500)!important;
+    --elem-font-weight: var(--vdp-current-date-font-weight, 500)!important;
+    --elem-current-outline-color: var(--vdp-current-date-outline-color, transparent)!important;
+    --elem-hover-color: var(--vdp-hover-color, var(--cozh-black))!important;
+    --divider-color: var(--vdp-divider-color, transparent)!important;
+    --elem-border-radius: var(--vdp-elem-border-radius, 50%)!important;
+    --elem-font-size: var(--vdp-elem-font-size, 15px)!important;
+    --elem-subheading-font-size: var(--vdp-elem-font-size, 12px)!important;
+    --heading-hover-color: var(--vdp-heading-hover-color, transparent)!important;
+    --arrow-color: var(--vdp-arrow-color, var(--cozh-dark-grey))!important;
+}
+.v3dp__elements button.selected span {
+    background-color: var(--elem-selected-bg-color)!important;
+    color: var(--elem-selected-color)!important;
+}
+.v3dp__element__button__day.current {
+    color: var(--cozh-blue)!important;
+}
+.v3dp__heading__icon {
+    height: 8px!important;
+}
+.v3dp__heading {
+    height: 45px!important;
+    border-top: none!important;
+}
+.v3dp__heading__center {
+    font-size: 13px!important;
+    font-weight: 500!important;
+    letter-spacing: 0.03em!important;
+    text-transform: uppercase!important;
+}
+
+.v3dp__heading__button__left {
+    width: 50px!important;
+}
+.v3dp__heading__button__right {
+    width: 50px!important;
+}
+.v3dp__element__button__day span {
+    outline: none!important;
+}
+
+.v3dp__divider {
+    display: none;
+}

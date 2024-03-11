@@ -1,0 +1,286 @@
+<template>
+	
+	<div class="task" :class="'task--' + task.status">
+		<div class="task__header">
+			<div class="task__status">
+				<div class="task__badge">
+
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" v-if="task.actionType == 'control'">
+					<g clip-path="url(#clip0_38_8)">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2ZM0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10Z" fill="#AEC1CC"/>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M14.7071 6.29289C15.0976 6.68342 15.0976 7.31658 14.7071 7.70711L8.70711 13.7071C8.31658 14.0976 7.68342 14.0976 7.29289 13.7071L5.29289 11.7071C4.90237 11.3166 4.90237 10.6834 5.29289 10.2929C5.68342 9.90237 6.31658 9.90237 6.70711 10.2929L8 11.5858L13.2929 6.29289C13.6834 5.90237 14.3166 5.90237 14.7071 6.29289Z" fill="#AEC1CC"/>
+					</g>
+					<defs>
+					<clipPath id="clip0_38_8">
+					<rect width="20" height="20" fill="white"/>
+					</clipPath>
+					</defs>
+					</svg>
+
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" v-if="task.actionType == 'review'">
+					<g clip-path="url(#clip0_38_5)">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M10 8C8.34315 8 7 9.34315 7 11C7 12.6569 8.34315 14 10 14C11.6569 14 13 12.6569 13 11C13 9.34315 11.6569 8 10 8ZM5 11C5 8.23858 7.23858 6 10 6C12.7614 6 15 8.23858 15 11C15 13.7614 12.7614 16 10 16C7.23858 16 5 13.7614 5 11Z" fill="#AEC1CC"/>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M0.120095 8.52485C1.14267 6.63118 4.49469 3 10 3C15.5053 3 18.8573 6.63118 19.8799 8.52485C20.1423 9.01081 19.9611 9.61749 19.4751 9.87991C18.9892 10.1423 18.3825 9.96111 18.1201 9.47515C17.3427 8.03548 14.5747 5 10 5C5.42531 5 2.65733 8.03548 1.87991 9.47515C1.61749 9.96111 1.01081 10.1423 0.524851 9.87991C0.038893 9.61749 -0.142323 9.01081 0.120095 8.52485Z" fill="#AEC1CC"/>
+					</g>
+					<defs>
+					<clipPath id="clip0_38_5">
+					<rect width="20" height="20" fill="white"/>
+					</clipPath>
+					</defs>
+					</svg>
+
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" v-if="task.actionType == 'work'">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M7.20119 0.97929C7.39006 0.779728 7.65272 0.666672 7.92749 0.666672H12.2565C12.5313 0.666672 12.7939 0.779728 12.9828 0.97929L19.4763 7.8404C19.8412 8.226 19.8412 8.82957 19.4763 9.21517L16.2295 12.6457C16.0407 12.8453 15.778 12.9583 15.5032 12.9583C15.2285 12.9583 14.9658 12.8453 14.7769 12.6457L12.9732 10.7399L7.02816 17.3678C5.72409 18.8216 3.4647 18.884 2.08205 17.5048C0.697795 16.124 0.760787 13.8659 2.21942 12.564L8.98493 6.52581L6.11894 3.49757C5.754 3.11197 5.754 2.50841 6.11894 2.12281L7.20119 0.97929ZM10.3603 7.97902L3.55116 14.0562C2.9504 14.5923 2.92473 15.5205 3.49449 16.0888C4.06585 16.6588 5.0008 16.6327 5.53934 16.0323L11.5939 9.28243L10.3603 7.97902ZM8.22208 2.81019L8.35791 2.66667H11.8261L17.3731 8.52778L15.5032 10.5035L8.22208 2.81019Z" fill="#AEC1CC"/>
+					</svg>
+
+				</div>
+
+				{{ statusText }}
+			</div>
+		</div>
+		<div class="task__body">
+			<div class="task__path" v-if="task.title !== ''">
+				<div class="task__path-item" v-for="(path, index) in currentPath" :key="index">
+					{{ path }}
+				</div>
+			</div>
+			<a class="task__name" @click="openTask(task.id)">
+				<HiddenText :text="task.name" :limited="90" />
+			</a>
+		</div>
+		<div class="task__footer">
+			<div class="task__num">
+				{{ task.num }}
+			</div>
+			<div class="task__date">
+				{{ $moment(task.dateCreated).format('DD.MM.YYYY') }}
+			</div>
+		</div>
+	</div>
+
+  <PanelTask ref="taskPanel" />
+
+</template>
+
+<script setup>
+  import PanelTask from '../panels/PanelTask.vue';
+  import HiddenText from '../ux/HiddenText.vue';
+</script>
+
+<script>
+  export default {
+    name: 'PageTrackerHouse',
+    props: ['task', 'organization_id', 'house_id'],
+		data: () => ({
+    }),
+    computed: {
+    	statusText () {
+    		switch (this.task.status) {
+    			case 'assigned':
+    				return 'Назначено';
+    			case 'done':
+    				return 'Всё в порядке';
+    			case 'issue':
+    				return 'Есть проблемы';
+    			case 'failed':
+    				return 'Не сделано';
+    			case 'expired':
+    				return 'Просрочено';
+    			case 'new':
+    				return 'Закрыто';
+    			default:
+    				return 'Назначено';
+    		}
+    	},
+    	currentPath () {
+    		return this.task.title.split(' / ');
+    	},
+    },
+    created () {
+    },
+    methods: {
+    	openTask (id) {
+		    this.$refs.taskPanel.show({
+          task_id: id,
+          house_id: this.house_id,
+          organization_id: this.organization_id,
+        });
+    	},
+    },
+  }
+</script>
+
+<style scoped>
+	
+	.task {
+		padding: 15px;
+		background-color: var(--cozh-white);
+		border-radius: 8px;
+		margin-bottom: 5px;
+	}
+	
+	.task__header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid var(--cozh-light-grey);
+		padding-bottom: 10px;
+	}
+	.task__footer {
+		padding-top: 10px;
+    border-top: 1px solid var(--cozh-light-grey);
+    display: flex;
+    flex-direction: revert;
+    align-items: center;
+    justify-content: space-between;
+	}
+
+
+	.task__status {
+		font-size: 12px;
+		font-weight: 500;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+
+	}
+	.task__num {
+		color: var(--cozh-grey);
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.task__badge {
+		height: 24px;
+		width: 24px;
+		border-radius: 50%;
+		margin-right: 8px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+	.task__badge svg {
+		width: 12px;
+	}
+	.task__body {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.task__name {
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.2;
+		display: flex;
+	}
+	.task__date {
+		color: rgba(var(--cozh-black-code), .5);
+ 		font-size: 12px;
+ 		font-weight: 500;
+	}
+
+
+
+	.task__path {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		margin-bottom: 8px;
+	}
+	.task__path-item {
+		color: var(--cozh-grey);
+ 		font-size: 12px;
+	 	font-weight: 500;
+	 	max-width: 50%;
+	 	text-overflow: ellipsis;
+	 	overflow: hidden;
+	 	white-space: nowrap;
+	 	position: relative;
+	}
+	.task__path-item:not(:last-child) {
+		padding-right: 23px;
+	 	max-width: calc(50% + 20px);
+	}
+	.task__path-item:not(:last-child)::before {
+		content: url('../../assets/img/check-right-grey.svg');
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+
+
+
+	/* assigned  */
+	.task--assigned .task__status {
+		color: var(--cozh-grey);
+	}
+	.task--assigned .task__badge {
+		background-color: rgba(233, 241, 244, 1);
+	}
+	.task--assigned .task__badge svg path {
+		fill: var(--cozh-grey);
+	}
+
+
+	/* done  */
+	.task--done .task__status {
+		color: var(--cozh-blue);
+	}
+	.task--done .task__badge {
+		background-color: rgba(233, 241, 244, 1);
+	}
+	.task--done .task__badge svg path {
+		fill: var(--cozh-blue);
+	}
+
+	/* issue  */
+	.task--issue .task__status {
+		color: var(--cozh-orange);
+	}
+	.task--issue .task__badge {
+		background-color: rgba(var(--cozh-orange-code), .12);
+	}
+	.task--issue .task__badge svg path {
+		fill: var(--cozh-orange);
+	}
+
+	/* failed  */
+	.task--failed .task__status {
+		color: var(--cozh-red);
+	}
+	.task--failed .task__badge {
+		background-color: rgba(var(--cozh-red-code), .12);
+	}
+	.task--failed .task__badge svg path {
+		fill: var(--cozh-red);
+	}
+
+	/* expired  */
+	.task--expired .task__status {
+		color: var(--cozh-dark-red);
+	}
+	.task--expired .task__badge {
+		background-color: rgba(var(--cozh-dark-red-code), .08);
+	}
+	.task--expired .task__badge svg path {
+		fill: var(--cozh-dark-red);
+	}
+
+	/* new  */
+	.task--new .task__status {
+		color: var(--cozh-green);
+	}
+	.task--new .task__badge {
+		background-color: rgba(var(--cozh-green-code), .15);
+	}
+	.task--new .task__badge svg path {
+		fill: var(--cozh-green);
+	}
+
+
+
+</style>
