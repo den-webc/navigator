@@ -1,6 +1,6 @@
 {
   "name": "Navigator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --host 65.108.240.14 --port 5051",
